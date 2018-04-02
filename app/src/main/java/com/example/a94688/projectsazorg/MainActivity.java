@@ -41,10 +41,10 @@ public class MainActivity extends AppCompatActivity {
         tv.setLayoutParams(lp);
 
         // Set text to display in TextView
-        tv.setText("This is a sample TextView...");
+        tv.setText("Click one of the coices!!");
 
         // Set a text color for TextView text
-        tv.setTextColor(Color.parseColor("#ff0000"));
+        tv.setTextColor(Color.parseColor("#6e7f80"));
 
         // Add newly created TextView to parent view group (RelativeLayout)
         rl.addView(tv);
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         tv.setText("Choice one was pressed...");
 
         // Set a text color for TextView text
-        tv.setTextColor(Color.parseColor("#ff0000"));
+        tv.setTextColor(Color.parseColor("#806e7f"));
 
         tv.setBackgroundColor(Color.parseColor("#ffeeee"));
 
@@ -100,11 +100,17 @@ public class MainActivity extends AppCompatActivity {
         tv.setText("Choice two was pressed...");
 
         // Set a text color for TextView text
-        tv.setTextColor(Color.parseColor("#0000ff"));
+        tv.setTextColor(Color.parseColor("#7f806e"));
 
         tv.setBackgroundColor(Color.parseColor("#eeeeff"));
 
-        tv.setId(Integer.parseInt("choiceTwoText"));
+
+
+        //tv.setId(Integer.parseInt("choiceTwoText"));
+        //^^broken ID setting test
+
+
+
         // Add newly created TextView to parent view group (RelativeLayout)
         rl.addView(tv);
 
