@@ -18,6 +18,8 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     GridLayout gl;
+    int x=0;
+    int y =0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void choice1(View view){
 
+        x++;
+
         // Get the widgets reference from XML layout
         RelativeLayout rl = (RelativeLayout) findViewById(R.id.rl);
 
@@ -68,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         tv.setLayoutParams(lp);
 
         // Set text to display in TextView
-        tv.setText("Choice one was pressed...");
+        tv.setText("Choice one was pressed " + x + " times...");
 
         // Set a text color for TextView text
         tv.setTextColor(Color.parseColor("#806e7f"));
@@ -82,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void choice2(View view){
 
+        y++;
+
         // Get the widgets reference from XML layout
         RelativeLayout rl = (RelativeLayout) findViewById(R.id.rl);
 
@@ -97,41 +103,17 @@ public class MainActivity extends AppCompatActivity {
         tv.setLayoutParams(lp);
 
         // Set text to display in TextView
-        tv.setText("Choice two was pressed...");
+        tv.setText("Choice two was pressed " + y + " times...");
 
         // Set a text color for TextView text
         tv.setTextColor(Color.parseColor("#7f806e"));
 
         tv.setBackgroundColor(Color.parseColor("#eeeeff"));
 
-
-
-        //tv.setId(Integer.parseInt("choiceTwoText"));
-        //^^broken ID setting test
-
-
+        tv.setId(R.id.my_edit_text_1);
 
         // Add newly created TextView to parent view group (RelativeLayout)
         rl.addView(tv);
 
-        /*// Initializing a ShapeDrawable
-        ShapeDrawable sd = new ShapeDrawable();
-
-        // Specify the shape of ShapeDrawable
-        sd.setShape(new RectShape());
-
-        // Specify the border color of shape
-        sd.getPaint().setColor(Color.RED);
-
-        // Set the border width
-        sd.getPaint().setStrokeWidth(10f);
-
-        // Specify the style is a Stroke
-        sd.getPaint().setStyle(Paint.Style.STROKE);
-
-        sd.getPaint().s
-
-        // Finally, add the drawable background to TextView
-        tv.setBackground(sd);*/
     }
 }
