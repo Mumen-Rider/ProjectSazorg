@@ -15,41 +15,27 @@ import android.widget.GridLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.*;
+
 public class MainActivity extends AppCompatActivity {
 
+    Button choice1;
+    Button choice2;
     GridLayout gl;
     int x=0;
     int y =0;
+
+    ArrayList<String> IDs = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         gl = (GridLayout)findViewById(R.id.Choices);
 
-        // Get the widgets reference from XML layout
-        RelativeLayout rl = (RelativeLayout) findViewById(R.id.rl);
-
-        // Create a TextView programmatically.
-        TextView tv = new TextView(getApplicationContext());
-
-        // Create a LayoutParams for TextView
-        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.WRAP_CONTENT, // Width of TextView
-                RelativeLayout.LayoutParams.WRAP_CONTENT); // Height of TextView
-
-        // Apply the layout parameters to TextView widget
-        tv.setLayoutParams(lp);
-
-        // Set text to display in TextView
-        tv.setText("Click one of the coices!!");
-
-        // Set a text color for TextView text
-        tv.setTextColor(Color.parseColor("#6e7f80"));
-
-        // Add newly created TextView to parent view group (RelativeLayout)
-        rl.addView(tv);
+       createTextview("You have just woken up in a forest all alone. What is your first action?");
     }
 
 
@@ -57,7 +43,9 @@ public class MainActivity extends AppCompatActivity {
 
         x++;
 
-        // Get the widgets reference from XML layout
+        createTextview("Choice one was pressed " + x + " times...");
+
+        /*// Get the widgets reference from XML layout
         RelativeLayout rl = (RelativeLayout) findViewById(R.id.rl);
 
         // Create a TextView programmatically.
@@ -81,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Add newly created TextView to parent view group (RelativeLayout)
-        rl.addView(tv);
+        rl.addView(tv);*/
     }
 
     public void choice2(View view){
@@ -110,7 +98,65 @@ public class MainActivity extends AppCompatActivity {
 
         tv.setBackgroundColor(Color.parseColor("#eeeeff"));
 
-        tv.setId(R.id.my_edit_text_1);
+
+        // Add newly created TextView to parent view group (RelativeLayout)
+        rl.addView(tv);
+
+    }
+
+    public void animateTextViews() {
+
+
+
+
+    }
+
+    public void createTextview(String s){
+
+        // Get the widgets reference from XML layout
+        RelativeLayout rl = (RelativeLayout) findViewById(R.id.rl);
+
+        // Create a TextView programmatically.
+        TextView tv = new TextView(getApplicationContext());
+
+        // Create a LayoutParams for TextView
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT, // Width of TextView
+                RelativeLayout.LayoutParams.WRAP_CONTENT); // Height of TextView
+
+        // Apply the layout parameters to TextView widget
+        tv.setLayoutParams(lp);
+
+        //tv.setId(findViewById(id));
+
+        tv.setGravity(Gravity.CENTER);
+
+        tv.setPadding(5,5,5,5);
+
+        // Set text to display in TextView
+        tv.setText(s);
+
+        // Set a text color for TextView text
+        tv.setTextColor(Color.parseColor("#6e7f80"));
+
+        tv.setId(R.id.startingText);
+
+        ShapeDrawable sd = new ShapeDrawable();
+
+        // Specify the shape of ShapeDrawable
+        sd.setShape(new RectShape());
+
+        // Specify the border color of shape
+        sd.getPaint().setColor(Color.BLACK);
+
+        // Set the border width
+        sd.getPaint().setStrokeWidth(10f);
+
+        // Specify the style is a Stroke
+        sd.getPaint().setStyle(Paint.Style.STROKE);
+
+        // Finally, add the drawable background to TextView
+        tv.setBackground(sd);
 
         // Add newly created TextView to parent view group (RelativeLayout)
         rl.addView(tv);
