@@ -1,5 +1,6 @@
 package com.example.a94688.projectsazorg;
 
+import android.app.ActionBar;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
@@ -12,7 +13,9 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.*;
@@ -35,7 +38,17 @@ public class MainActivity extends AppCompatActivity {
 
         gl = (GridLayout)findViewById(R.id.Choices);
 
-       createTextview("You have just woken up in a forest all alone. What is your first action?");
+        //View decorView = getWindow().getDecorView();
+        // Hide the status bar.
+        //int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        //decorView.setSystemUiVisibility(uiOptions);
+        // Remember that you should never show the action bar if the
+        // status bar is hidden, so hide that too if necessary.
+        //ActionBar actionBar = getActionBar();
+        //actionBar.hide();
+        createBlankTextview("");
+        createBlankTextview("");
+        createTextview("You have just woken up in a forest all alone. What is your first action?");
     }
 
 
@@ -44,65 +57,25 @@ public class MainActivity extends AppCompatActivity {
         x++;
 
         createTextview("Choice one was pressed " + x + " times...");
-
-        /*// Get the widgets reference from XML layout
-        RelativeLayout rl = (RelativeLayout) findViewById(R.id.rl);
-
-        // Create a TextView programmatically.
-        TextView tv = new TextView(getApplicationContext());
-
-        // Create a LayoutParams for TextView
-        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.WRAP_CONTENT, // Width of TextView
-                RelativeLayout.LayoutParams.WRAP_CONTENT); // Height of TextView
-
-        // Apply the layout parameters to TextView widget
-        tv.setLayoutParams(lp);
-
-        // Set text to display in TextView
-        tv.setText("Choice one was pressed " + x + " times...");
-
-        // Set a text color for TextView text
-        tv.setTextColor(Color.parseColor("#806e7f"));
-
-        tv.setBackgroundColor(Color.parseColor("#ffeeee"));
-
-
-        // Add newly created TextView to parent view group (RelativeLayout)
-        rl.addView(tv);*/
-    }
+        final ScrollView sv = (ScrollView)findViewById(R.id.sv);
+        sv.post(new Runnable() {
+            public void run() {
+                sv.fullScroll(sv.FOCUS_DOWN);
+            }
+        });    }
 
     public void choice2(View view){
 
         y++;
 
-        // Get the widgets reference from XML layout
-        RelativeLayout rl = (RelativeLayout) findViewById(R.id.rl);
+        createTextview("Choice two was pressed " + y + " times...");
+        final ScrollView sv = (ScrollView)findViewById(R.id.sv);
+        sv.post(new Runnable() {
+            public void run() {
+                sv.fullScroll(sv.FOCUS_DOWN);
+            }
+        });    }
 
-        // Create a TextView programmatically.
-        TextView tv = new TextView(getApplicationContext());
-
-        // Create a LayoutParams for TextView
-        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.WRAP_CONTENT, // Width of TextView
-                RelativeLayout.LayoutParams.WRAP_CONTENT); // Height of TextView
-
-        // Apply the layout parameters to TextView widget
-        tv.setLayoutParams(lp);
-
-        // Set text to display in TextView
-        tv.setText("Choice two was pressed " + y + " times...");
-
-        // Set a text color for TextView text
-        tv.setTextColor(Color.parseColor("#7f806e"));
-
-        tv.setBackgroundColor(Color.parseColor("#eeeeff"));
-
-
-        // Add newly created TextView to parent view group (RelativeLayout)
-        rl.addView(tv);
-
-    }
 
     public void animateTextViews() {
 
@@ -111,17 +84,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void createTextview(String s){
+    public void createBlankTextview(String s){
 
         // Get the widgets reference from XML layout
-        RelativeLayout rl = (RelativeLayout) findViewById(R.id.rl);
+        LinearLayout rl = (LinearLayout) findViewById(R.id.ll);
 
         // Create a TextView programmatically.
         TextView tv = new TextView(getApplicationContext());
 
         // Create a LayoutParams for TextView
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.WRAP_CONTENT, // Width of TextView
+                RelativeLayout.LayoutParams.MATCH_PARENT, // Width of TextView
                 RelativeLayout.LayoutParams.WRAP_CONTENT); // Height of TextView
 
         // Apply the layout parameters to TextView widget
@@ -132,6 +105,39 @@ public class MainActivity extends AppCompatActivity {
         tv.setGravity(Gravity.CENTER);
 
         tv.setPadding(5,5,5,5);
+
+        tv.setHeight(150);
+
+        // Set text to display in TextView
+        tv.setText(s);
+
+        rl.addView(tv);
+
+    }
+
+    public void createTextview(String s){
+
+        // Get the widgets reference from XML layout
+        LinearLayout rl = (LinearLayout) findViewById(R.id.ll);
+
+        // Create a TextView programmatically.
+        TextView tv = new TextView(getApplicationContext());
+
+        // Create a LayoutParams for TextView
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.MATCH_PARENT, // Width of TextView
+                RelativeLayout.LayoutParams.WRAP_CONTENT); // Height of TextView
+
+        // Apply the layout parameters to TextView widget
+        tv.setLayoutParams(lp);
+
+        //tv.setId(findViewById(id));
+
+        tv.setGravity(Gravity.CENTER);
+
+        tv.setPadding(5,5,5,5);
+
+        tv.setHeight(150);
 
         // Set text to display in TextView
         tv.setText(s);
