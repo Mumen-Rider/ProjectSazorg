@@ -27,6 +27,11 @@ public class MainActivity extends AppCompatActivity {
     GridLayout gl;
     int x=0;
     int y =0;
+    int I0 =0;
+    int I1 =0;
+    int I2 =0;
+    int I3 =0;
+    int I4 =0;
 
     ArrayList<String> IDs = new ArrayList<String>();
 
@@ -46,17 +51,20 @@ public class MainActivity extends AppCompatActivity {
         // status bar is hidden, so hide that too if necessary.
         //ActionBar actionBar = getActionBar();
         //actionBar.hide();
-        createBlankTextview("");
-        createBlankTextview("");
-        createTextview("You have just woken up in a forest all alone. What is your first action?");
+        createBlankTextview();
+        createBlankTextview();
+        createTextview("Welcome to the Game. Press Choice 1.");
     }
 
 
     public void choice1(View view){
 
         x++;
+        if(I0==0){
+            I0=1;
+            createTextview("Good job, you pressed choice one. You win the Game!!");
 
-        createTextview("Choice one was pressed " + x + " times...");
+        }
         final ScrollView sv = (ScrollView)findViewById(R.id.sv);
         sv.post(new Runnable() {
             public void run() {
@@ -67,8 +75,11 @@ public class MainActivity extends AppCompatActivity {
     public void choice2(View view){
 
         y++;
+        if(I0==0){
+            I0=2;
+            createTextview("You pressed choice two. You have now lost the game. Great job.");
 
-        createTextview("Choice two was pressed " + y + " times...");
+        }
         final ScrollView sv = (ScrollView)findViewById(R.id.sv);
         sv.post(new Runnable() {
             public void run() {
@@ -84,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void createBlankTextview(String s){
+    public void createBlankTextview(){
 
         // Get the widgets reference from XML layout
         LinearLayout rl = (LinearLayout) findViewById(R.id.ll);
@@ -100,16 +111,11 @@ public class MainActivity extends AppCompatActivity {
         // Apply the layout parameters to TextView widget
         tv.setLayoutParams(lp);
 
-        //tv.setId(findViewById(id));
-
         tv.setGravity(Gravity.CENTER);
 
         tv.setPadding(5,5,5,5);
 
         tv.setHeight(150);
-
-        // Set text to display in TextView
-        tv.setText(s);
 
         rl.addView(tv);
 
